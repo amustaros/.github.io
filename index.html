@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Albert Mustarós — Portafoli</title>
+<meta name="description" content="Portafoli d'Albert Mustarós Hernández — Tècnic de comunicació i creador audiovisual. Treballs en 3D, fotografia i comunicació institucional.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --black:#0a0a0a;
+    --white:#F5F5F5;
+    --mid:#b8b4ab;
+    --border:1px solid #0a0a0a;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--white);
+    color:var(--black);
+    font-family:'DM Sans',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+    cursor:crosshair;
+  }
+
+  /* NAV */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.2rem 2.5rem;
+    border-bottom:var(--border);
+    background:var(--white);
+  }
+  .nav-logo{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.4rem;
+    letter-spacing:0.08em;
+    text-decoration:none;
+    color:var(--black);
+  }
+  .nav-links{
+    display:flex;
+    gap:2rem;
+    list-style:none;
+    font-family:'DM Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:var(--black);
+    letter-spacing:0.12em;
+    transition:letter-spacing 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s;
+    display:inline-block;
+  }
+  .nav-links a:hover{
+    letter-spacing:0.32em;
+    opacity:0.45;
+  }
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    margin-top:56px;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    z-index:0;
+  }
+  .hero-bg img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .hero-bg::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      to top,
+      rgba(0,0,0,0.78) 0%,
+      rgba(0,0,0,0.25) 50%,
+      rgba(0,0,0,0.08) 100%
+    );
+  }
+  .hero-content{
+    position:relative;
+    z-index:1;
+    width:100%;
+    padding:4rem 3rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    border-top:1px solid rgba(255,255,255,0.12);
+  }
+  .hero-tag{
+    font-family:'DM Mono',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.5);
+    margin-bottom:2rem;
+  }
+  .hero-name{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(5rem,10vw,9rem);
+    line-height:0.9;
+    letter-spacing:-0.01em;
+    transition:letter-spacing 0.6s cubic-bezier(0.16,1,0.3,1);
+    display:inline-block;
+    cursor:default;
+    color:#fff;
+  }
+  .hero-name:hover{letter-spacing:0.06em;}
+  .hero-name span{
+    display:block;
+    font-style:italic;
+    font-family:'DM Sans',sans-serif;
+    font-size:clamp(1rem,2vw,1.8rem);
+    font-weight:300;
+    letter-spacing:0.02em;
+    margin-top:1rem;
+    color:rgba(255,255,255,0.55);
+  }
+  .hero-info{
+    font-family:'DM Mono',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.1em;
+    line-height:2.2;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.4);
+    text-align:right;
+  }
+  .hero-scroll{
+    position:absolute;
+    bottom:2rem;
+    right:2rem;
+    font-family:'DM Mono',monospace;
+    font-size:0.6rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.35);
+    writing-mode:vertical-rl;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+    z-index:2;
+  }
+  .scroll-line{
+    width:1px;
+    height:60px;
+    background:rgba(255,255,255,0.25);
+    display:block;
+  }
+
+  /* CATEGORIES BAR */
+  .categories-bar{
+    display:flex;
+    border-bottom:var(--border);
+    overflow-x:auto;
+    scrollbar-width:none;
+    position:sticky;
+    top:56px;
+    z-index:90;
+    background:var(--white);
+  }
+  .categories-bar::-webkit-scrollbar{display:none;}
+  .cat-btn{
+    font-family:'DM Mono',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    padding:1rem 2rem;
+    border:none;
+    border-right:var(--border);
+    background:transparent;
+    cursor:crosshair;
+    white-space:nowrap;
+    transition:background 0.2s, color 0.2s;
+    color:var(--mid);
+    flex-shrink:0;
+  }
+  .cat-btn:first-child{padding-left:2.5rem;}
+  .cat-btn.active{background:var(--black);color:var(--white);}
+  .cat-btn:hover:not(.active){background:#eaeaea;color:var(--black);}
+  .cat-count{display:inline-block;margin-left:0.5rem;opacity:0.5;}
+
+  /* PROJECTS */
+  .projects-section{min-height:60vh;}
+  .category-block{border-bottom:var(--border);display:none;}
+  .category-block.visible{display:block;}
+
+  .category-header{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    border-bottom:var(--border);
+  }
+  .cat-title-col{
+    border-right:var(--border);
+    padding:3rem 2.5rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .cat-main-title{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(3.5rem,7vw,6rem);
+    line-height:1;
+    letter-spacing:0.02em;
+    transition:letter-spacing 0.5s cubic-bezier(0.16,1,0.3,1);
+    display:inline-block;
+  }
+  .cat-title-col:hover .cat-main-title{
+    letter-spacing:0.12em;
+  }
+  .cat-desc-col{
+    padding:3rem 3rem;
+    display:flex;
+    align-items:flex-end;
+  }
+  .cat-desc{
+    font-size:0.9rem;
+    line-height:1.8;
+    color:#555;
+    max-width:480px;
+  }
+  .cat-index{
+    font-family:'DM Mono',monospace;
+    font-size:0.6rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--mid);
+    margin-bottom:1rem;
+  }
+
+  /* PROJECT GRID */
+  .projects-grid{display:grid;}
+  .projects-grid.cols-2{grid-template-columns:1fr 1fr;}
+  .projects-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
+
+  .project-card{
+    border-right:var(--border);
+    border-bottom:var(--border);
+    cursor:pointer;
+    overflow:hidden;
+    position:relative;
+    transition:background 0.2s;
+  }
+  .projects-grid.cols-2 .project-card:nth-child(2n){border-right:none;}
+  .projects-grid.cols-3 .project-card:nth-child(3n){border-right:none;}
+  .project-card:hover{background:#eaeaea;}
+
+  .card-img{
+    width:100%;
+    aspect-ratio:4/3;
+    background:#1a1a1a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#333;
+    font-family:'DM Mono',monospace;
+    font-size:0.6rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    position:relative;
+    overflow:hidden;
+    transition:transform 0.5s ease;
+  }
+  .card-img.portrait{aspect-ratio:3/4;}
+  .card-img.natural{aspect-ratio:unset;}
+  .card-img.natural img{height:auto;object-fit:unset;position:relative;}
+  .card-img::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 6px,
+      rgba(255,255,255,0.015) 6px,
+      rgba(255,255,255,0.015) 7px
+    );
+    pointer-events:none;
+  }
+  .card-img-inner{
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .card-img-icon{font-size:2rem;opacity:0.15;}
+
+  /* Quan tens imatge real, substitueix .card-img per:
+     <div class="card-img" style="background:none;">
+       <img src="nom-imatge.jpg" style="width:100%;height:100%;object-fit:cover;">
+     </div>
+  */
+
+  .card-info{
+    padding:1.5rem 2rem;
+    border-top:var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+  }
+  .card-title{
+    font-family:'DM Sans',sans-serif;
+    font-weight:400;
+    font-size:1rem;
+    margin-bottom:0.3rem;
+  }
+  .card-meta{
+    font-family:'DM Mono',monospace;
+    font-size:0.6rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--mid);
+  }
+  .card-arrow{
+    font-size:1.2rem;
+    opacity:0.3;
+    transition:opacity 0.2s, transform 0.2s;
+    flex-shrink:0;
+  }
+  .project-card:hover .card-arrow{opacity:1;transform:translate(3px,-3px);}
+  .project-card:hover .card-img{transform:scale(1.02);}
+
+  /* IMAGE LIGHTBOX */
+  .img-lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:998;
+    background:rgba(0,0,0,0.96);
+    align-items:center;
+    justify-content:center;
+    cursor:zoom-out;
+  }
+  .img-lightbox.open{display:flex;}
+  .img-lightbox img{
+    max-width:90vw;
+    max-height:88vh;
+    object-fit:contain;
+    display:block;
+    cursor:default;
+  }
+  .img-lightbox-close{
+    position:fixed;
+    top:1.5rem;right:2rem;
+    font-family:'DM Mono',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.4);
+    background:none;border:none;
+    cursor:pointer;
+    transition:color 0.2s;
+    z-index:999;
+  }
+  .img-lightbox-close:hover{color:white;}
+  .img-lightbox-info{
+    position:fixed;
+    bottom:2rem;
+    left:2.5rem;
+    z-index:999;
+    pointer-events:none;
+  }
+  .img-lightbox-info .info-category{
+    font-family:'DM Mono',monospace;
+    font-size:0.6rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.35);
+    margin-bottom:0.4rem;
+  }
+  .img-lightbox-info .info-title{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(2rem,4vw,3.5rem);
+    line-height:1;
+    color:#fff;
+    letter-spacing:0.03em;
+  }
+  .img-lightbox-info .info-meta{
+    font-family:'DM Mono',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.4);
+    margin-top:0.5rem;
+  }
+
+  /* CARD CURSOR */
+  .project-card.has-image{cursor:zoom-in;}
+  .about-section{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border-bottom:var(--border);
+  }
+  .about-left{
+    border-right:var(--border);
+    padding:5rem 3rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .about-big{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(4rem,8vw,7rem);
+    line-height:1;
+    letter-spacing:0.02em;
+    transition:letter-spacing 0.6s cubic-bezier(0.16,1,0.3,1);
+    display:inline-block;
+    cursor:default;
+  }
+  .about-left:hover .about-big{
+    letter-spacing:0.1em;
+  }
+  .about-right{
+    padding:5rem 3rem;
+    display:flex;
+    flex-direction:column;
+    gap:2.5rem;
+  }
+  .about-text{
+    font-size:0.95rem;
+    line-height:1.9;
+    color:#444;
+  }
+  .skills-label{
+    font-family:'DM Mono',monospace;
+    font-size:0.6rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--mid);
+    margin-bottom:0.8rem;
+  }
+  .skills-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border:var(--border);
+  }
+  .skill-item{
+    padding:0.6rem 1rem;
+    border-bottom:var(--border);
+    border-right:var(--border);
+    font-family:'DM Mono',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:#555;
+  }
+  .skill-item:nth-child(2n){border-right:none;}
+  .skill-item:nth-last-child(-n+2){border-bottom:none;}
+
+  /* CONTACT */
+  .contact-section{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    min-height:40vh;
+    border-bottom:var(--border);
+  }
+  .contact-left{
+    border-right:var(--border);
+    padding:5rem 3rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:2rem;
+  }
+  .contact-heading{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(3rem,6vw,5rem);
+    line-height:1;
+    letter-spacing:0.02em;
+    transition:letter-spacing 0.6s cubic-bezier(0.16,1,0.3,1);
+    display:inline-block;
+    cursor:default;
+  }
+  .contact-left:hover .contact-heading{
+    letter-spacing:0.1em;
+  }
+  .contact-email{
+    font-family:'DM Mono',monospace;
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    color:var(--mid);
+    text-decoration:none;
+    border-bottom:1px solid var(--mid);
+    padding-bottom:0.2rem;
+    display:inline-block;
+    transition:color 0.2s, border-color 0.2s;
+  }
+  .contact-email:hover{color:var(--black);border-color:var(--black);}
+  .contact-phone{
+    font-family:'DM Mono',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--mid);
+  }
+  .contact-right{
+    padding:5rem 2.5rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .contact-location{
+    font-family:'DM Mono',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--mid);
+    line-height:2;
+  }
+  .contact-domain{
+    font-family:'DM Mono',monospace;
+    font-size:0.6rem;
+    letter-spacing:0.1em;
+    color:var(--mid);
+  }
+
+  /* FOOTER */
+  footer{
+    padding:1.2rem 2.5rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'DM Mono',monospace;
+    font-size:0.6rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--mid);
+  }
+
+  /* PLAY BUTTON OVERLAY */
+  .card-play{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+    opacity:0;
+    transition:opacity 0.3s;
+  }
+  .project-card:hover .card-play{opacity:1;}
+  .card-play-btn{
+    width:56px;height:56px;
+    border:2px solid rgba(255,255,255,0.8);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(4px);
+  }
+  .card-play-btn::after{
+    content:'';
+    display:block;
+    width:0;height:0;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-left:16px solid white;
+    margin-left:4px;
+  }
+  .card-has-video .card-img::after{
+    content:'▶';
+    position:absolute;
+    bottom:0.8rem;right:0.8rem;
+    font-size:0.6rem;
+    font-family:'DM Mono',monospace;
+    letter-spacing:0.1em;
+    color:rgba(255,255,255,0.4);
+    z-index:2;
+  }
+
+
+  /* LIGHTBOX */
+  .lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:999;
+    background:rgba(0,0,0,0.95);
+    align-items:center;
+    justify-content:center;
+    cursor:default;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox-inner{
+    position:relative;
+    width:90vw;
+    max-width:1100px;
+    aspect-ratio:16/9;
+  }
+  .lightbox-inner iframe{
+    width:100%;height:100%;
+    border:none;
+  }
+  .lightbox-close{
+    position:absolute;
+    top:-3rem;right:0;
+    font-family:'DM Mono',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.5);
+    background:none;
+    border:none;
+    cursor:pointer;
+    transition:color 0.2s;
+  }
+  .lightbox-close:hover{color:white;}
+
+  /* ANIMATIONS */
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(16px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .fade-in{animation:fadeUp 0.5s ease both;}
+
+  /* RESPONSIVE */
+  @media(max-width:768px){
+    .hero{grid-template-columns:1fr;}
+    .hero-right{min-height:300px;}
+    .hero-scroll{display:none;}
+    .category-header{grid-template-columns:1fr;}
+    .cat-title-col{border-right:none;border-bottom:var(--border);}
+    .projects-grid.cols-2,.projects-grid.cols-3{grid-template-columns:1fr;}
+    .project-card{border-right:none !important;}
+    .about-section{grid-template-columns:1fr;}
+    .about-left{border-right:none;border-bottom:var(--border);}
+    .contact-section{grid-template-columns:1fr;}
+    .contact-left{border-right:none;border-bottom:var(--border);}
+    nav{padding:1rem 1.5rem;}
+    .nav-links{gap:1.2rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVEGACIÓ -->
+<nav>
+  <a class="nav-logo" href="#">AM</a>
+  <ul class="nav-links">
+    <li><a href="#projectes">Projectes</a></li>
+    <li><a href="#sobre">Sobre mi</a></li>
+    <li><a href="#contacte">Contacte</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="WhatsApp Image 2022-12-23 at 17.04.16.webp" alt="Albert Mustarós">
+  </div>
+  <div class="hero-content">
+    <div>
+      <p class="hero-tag">Tècnic de comunicació · Creador audiovisual</p>
+      <h1 class="hero-name">
+        Albert<br>Mustarós
+        <span>Disseny · 3D · Fotografia · Comunicació institucional</span>
+      </h1>
+    </div>
+    <div class="hero-info">
+      <div>La Garriga, Catalunya</div>
+      <div>albert@mustaros.com</div>
+      
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    Desplaça
+  </div>
+</section>
+
+<!-- BARRA DE CATEGORIES -->
+<div class="categories-bar" id="projectes">
+  <button class="cat-btn active" onclick="filterCat('all', this)">Tot <span class="cat-count">20</span></button>
+  <button class="cat-btn" onclick="filterCat('oniric', this)">Oníric <span class="cat-count">5</span></button>
+  <button class="cat-btn" onclick="filterCat('injection', this)">Injection <span class="cat-count">3</span></button>
+  <button class="cat-btn" onclick="filterCat('miscelani', this)">Miscel·lani <span class="cat-count">9</span></button>
+  <button class="cat-btn" onclick="filterCat('ccap', this)">CCAP <span class="cat-count">3</span></button>
+</div>
+
+<!-- PROJECTES -->
+<div class="projects-section">
+
+  <!-- ONÍRIC -->
+  <div class="category-block visible" id="block-oniric">
+    <div class="category-header">
+      <div class="cat-title-col">
+        <p class="cat-index">01 — Treballs en 3D</p>
+        <h2 class="cat-main-title">Oníric</h2>
+      </div>
+      <div class="cat-desc-col">
+        <p class="cat-desc">Peces creades en entorns tridimensionals, explorant formes, llum i espai. Un univers visual que transcendeix la realitat per construir mons propis.</p>
+      </div>
+    </div>
+    <div class="projects-grid cols-2">
+
+      <!-- Procedimental — vídeo directe -->
+      <div class="project-card card-has-video" onclick="openLocalVideo('https://github.com/amustaros/.github.io/raw/main/procedural.mp4')">
+        <div class="card-img" style="background:#111;position:relative;aspect-ratio:16/9;">
+          <video muted loop playsinline
+            style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"
+            onmouseenter="this.loop=true;this.play()" onmouseleave="this.pause();this.currentTime=0;">
+            <source src="https://github.com/amustaros/.github.io/raw/main/procedural.mp4" type="video/mp4">
+          </video>
+          <div class="card-play"><div class="card-play-btn"></div></div>
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Procedimental</div><div class="card-meta">Blender · 2024</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- Onada -->
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('TaulesCadires.webp','Oníric','Onada','Blender · 2025')">
+        <div class="card-img natural" style="background:none;padding:0;">
+          <img src="TaulesCadires.webp" alt="Onada" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Onada</div><div class="card-meta">Blender · 2025</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- Vora -->
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('treeChair1.webp','Oníric','Vora','Blender · Lightroom · 2025')">
+        <div class="card-img natural" style="background:none;padding:0;">
+          <img src="treeChair1.webp" alt="Vora" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Vora</div><div class="card-meta">Blender · Lightroom · 2025</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- Aplegat -->
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('Aplegat.webp','Oníric','Aplegat','Blender · 2025')">
+        <div class="card-img natural" style="background:none;padding:0;">
+          <img src="Aplegat.webp" alt="Aplegat" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Aplegat</div><div class="card-meta">Blender · 2025</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- Delta -->
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('delta3.webp','Oníric','Delta','Blender · Lightroom · 2026')">
+        <div class="card-img natural" style="background:none;padding:0;">
+          <img src="delta3.webp" alt="Delta" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Delta</div><div class="card-meta">Blender · Lightroom · 2026</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- INJECTION -->
+  <div class="category-block visible" id="block-injection">
+    <div class="category-header">
+      <div class="cat-title-col">
+        <p class="cat-index">02 — Col·laboració fotogràfica</p>
+        <h2 class="cat-main-title">Injection</h2>
+      </div>
+      <div class="cat-desc-col">
+        <p class="cat-desc">Col·laboració amb fotògrafa i models, amb intervenció digital i postproducció. La imatge com a punt de partida per a una nova realitat construïda capa a capa.</p>
+      </div>
+    </div>
+    <div class="projects-grid cols-3">
+
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('Injection1.webp','Injection','Injection I','Blender · 2025')">
+        <div class="card-img" style="background:none;padding:0;">
+          <img src="Injection1.webp" alt="Injection I" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Injection I</div><div class="card-meta">Blender · 2025</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('Injection2.webp','Injection','Injection II','Blender · 2025')">
+        <div class="card-img" style="background:none;padding:0;">
+          <img src="Injection2.webp" alt="Injection II" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Injection II</div><div class="card-meta">Blender · 2025</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('Injection3.webp','Injection','Injection III','Blender · 2025')">
+        <div class="card-img" style="background:none;padding:0;">
+          <img src="Injection3.webp" alt="Injection III" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Injection III</div><div class="card-meta">Blender · 2025</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MISCEL·LANI -->
+  <div class="category-block visible" id="block-miscelani">
+    <div class="category-header">
+      <div class="cat-title-col">
+        <p class="cat-index">03 — Imatge i edits</p>
+        <h2 class="cat-main-title">Miscel·lani</h2>
+      </div>
+      <div class="cat-desc-col">
+        <p class="cat-desc">Un arxiu d'imatges i edits analògics. Peces diverses unides per una sensibilitat estètica comuna: el detall, la textura i la llum com a protagonistes.</p>
+      </div>
+    </div>
+    <div class="projects-grid cols-3">
+
+      <!-- Tramuntana — vídeo directe -->
+      <div class="project-card card-has-video" onclick="openLocalVideo('https://github.com/amustaros/.github.io/raw/main/VioletScanerResum.mp4')">
+        <div class="card-img" style="background:#111;position:relative;">
+          <video muted loop playsinline
+            style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"
+            onmouseenter="this.loop=true;this.play()" onmouseleave="this.pause();this.currentTime=0;">
+            <source src="https://github.com/amustaros/.github.io/raw/main/VioletScanerResum.mp4" type="video/mp4">
+          </video>
+          <div class="card-play"><div class="card-play-btn"></div></div>
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Tramuntana</div><div class="card-meta">Scanner · Premiere · 2023</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- El nostre espai segur — vídeo directe -->
+      <div class="project-card card-has-video" onclick="openLocalVideo('https://github.com/amustaros/.github.io/raw/main/violet.mp4')">
+        <div class="card-img" style="background:#111;position:relative;">
+          <video muted loop playsinline
+            style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"
+            onmouseenter="this.loop=true;this.play()" onmouseleave="this.pause();this.currentTime=0;">
+            <source src="https://github.com/amustaros/.github.io/raw/main/violet.mp4" type="video/mp4">
+          </video>
+          <div class="card-play"><div class="card-play-btn"></div></div>
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">El nostre espai segur</div><div class="card-meta">Scanner · Premiere · 2023</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- Els meus dos amics -->
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('63c0f6706cf5f23ee077a7280fd6ddf0_edited.webp','Miscel·lani','Els meus dos amics','Werlisa II · Photoshop · 2018')">
+        <div class="card-img" style="background:none;padding:0;">
+          <img src="63c0f6706cf5f23ee077a7280fd6ddf0_edited.webp" alt="Els meus dos amics" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Els meus dos amics</div><div class="card-meta">Werlisa II · Photoshop · 2018</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- Castors i Llúdrigues -->
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('7A_0375.webp','Miscel·lani','Castors i Llúdrigues','Yashica FX-3 · 2019')">
+        <div class="card-img" style="background:none;padding:0;">
+          <img src="7A_0375.webp" alt="Castors i Llúdrigues" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Castors i Llúdrigues</div><div class="card-meta">Yashica FX-3 · 2019</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- L'Agulla, la Plana i la Mig dia -->
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('scan0025_edited.webp', 'L'Agulla, la Plana i la Mig dia', 'Miscel·lani — Yashica FX-3 · 2020')">
+        <div class="card-img" style="background:none;padding:0;">
+          <img src="scan0025_edited.webp" alt="L'Agulla, la Plana i la Mig dia" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">L'Agulla, la Plana i la Mig dia</div><div class="card-meta">Yashica FX-3 · 2020</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- La Caputxeta -->
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('scan0016_edited.webp','Miscel·lani','La Caputxeta','Yashica FX-3 · 2019')">
+        <div class="card-img" style="background:none;padding:0;">
+          <img src="scan0016_edited.webp" alt="La Caputxeta" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">La Caputxeta</div><div class="card-meta">Yashica FX-3 · 2019</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- Esnórquel -->
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('13A_0381-2.webp','Miscel·lani','Esnórquel','Yashica FX-3 · 2022')">
+        <div class="card-img" style="background:none;padding:0;">
+          <img src="13A_0381-2.webp" alt="Esnórquel" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Esnórquel</div><div class="card-meta">Yashica FX-3 · 2022</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- Goulash -->
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('000032.webp','Miscel·lani','Goulash','Werlisa II · 2018')">
+        <div class="card-img" style="background:none;padding:0;">
+          <img src="000032.webp" alt="Goulash" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">Goulash</div><div class="card-meta">Werlisa II · 2018</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+      <!-- No van entrar -->
+      <div class="project-card" style="cursor:zoom-in;" onclick="openImg('000009_edited.webp','Miscel·lani','No van entrar','Werlisa II · 2020')">
+        <div class="card-img" style="background:none;padding:0;">
+          <img src="000009_edited.webp" alt="No van entrar" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="card-info">
+          <div><div class="card-title">No van entrar</div><div class="card-meta">Werlisa II · 2020</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CCAP -->
+  <div class="category-block visible" id="block-ccap">
+    <div class="category-header">
+      <div class="cat-title-col">
+        <p class="cat-index">04 — Comunicació institucional</p>
+        <h2 class="cat-main-title">CCAP</h2>
+      </div>
+      <div class="cat-desc-col">
+        <p class="cat-desc">Treball com a Tècnic de Comunicació, Cultura i Esports al Consell Comarcal de l'Alt Penedès. Estratègia digital, contingut audiovisual i gestió de la imatge institucional.</p>
+      </div>
+    </div>
+    <div class="projects-grid cols-3">
+      <!-- Els vídeos de YouTube s'afegiran aquí -->
+      <div class="project-card">
+        <div class="card-img"><div class="card-img-inner"><div class="card-img-icon">▣</div><div>Pròximament</div></div></div>
+        <div class="card-info">
+          <div><div class="card-title">Vídeo institucional</div><div class="card-meta">YouTube · 2025</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="card-img"><div class="card-img-inner"><div class="card-img-icon">▣</div><div>Pròximament</div></div></div>
+        <div class="card-info">
+          <div><div class="card-title">Vídeo institucional</div><div class="card-meta">YouTube · 2025</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="card-img"><div class="card-img-inner"><div class="card-img-icon">▣</div><div>Pròximament</div></div></div>
+        <div class="card-info">
+          <div><div class="card-title">Vídeo institucional</div><div class="card-meta">YouTube · 2025</div></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SOBRE -->
+<section class="about-section" id="sobre">
+  <div class="about-left">
+    <div class="about-big">Sobre<br>mi.</div>
+    <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);line-height:2;">
+      <div>Grau en Mitjans Audiovisuals — Tecnocampus (UPF)</div>
+      <div>Postgrau en Gestió de Festivals — UB (IL3)</div>
+    </div>
+  </div>
+  <div class="about-right">
+    <p class="about-text">Tècnic de comunicació amb formació en mitjans audiovisuals i una trajectòria que combina la comunicació institucional amb la creació artística pròpia. El meu treball oscil·la entre el rigor del disseny editorial i la llibertat de l'experimentació visual.</p>
+    <div>
+      <p class="skills-label">Programari</p>
+      <div class="skills-grid">
+        <div class="skill-item">Adobe Photoshop</div>
+        <div class="skill-item">Adobe Premiere</div>
+        <div class="skill-item">Adobe Illustrator</div>
+        <div class="skill-item">After Effects</div>
+        <div class="skill-item">Blender</div>
+        <div class="skill-item">Adobe Lightroom</div>
+        <div class="skill-item">HTML / Wordpress</div>
+        <div class="skill-item">Firefly · ChatGPT</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTE -->
+<section class="contact-section" id="contacte">
+  <div class="contact-left">
+    <h2 class="contact-heading">Treballem<br>junts?</h2>
+    <a class="contact-email" href="mailto:albert@mustaros.com">albert@mustaros.com</a>
+    
+  </div>
+  <div class="contact-right">
+    <div class="contact-location">
+      <div>Albert Mustarós Hernández</div>
+      <div>La Garriga, Catalunya</div>
+      <br>
+      <div>Disponible per a projectes</div>
+      <div>freelance i col·laboracions</div>
+    </div>
+    <div class="contact-domain">mustaros.com</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Albert Mustarós Hernández</span>
+  <span>Portafoli audiovisual</span>
+</footer>
+
+
+<!-- IMAGE LIGHTBOX -->
+<div class="img-lightbox" id="imgLightbox" onclick="closeImgLightbox(event)">
+  <button class="img-lightbox-close" onclick="closeImgLightbox()">✕ Tancar</button>
+  <img id="imgLightboxImg" src="" alt="">
+  <div class="img-lightbox-info">
+    <div class="info-category" id="imgLightboxCat"></div>
+    <div class="info-title" id="imgLightboxTitle"></div>
+    <div class="info-meta" id="imgLightboxMeta"></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕ Tancar</button>
+    <iframe id="lightbox-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+  // ── IMAGE LIGHTBOX ──
+  function openImg(src, category, title, meta) {
+    const lb = document.getElementById('imgLightbox');
+    document.getElementById('imgLightboxImg').src = src;
+    document.getElementById('imgLightboxCat').textContent = category;
+    document.getElementById('imgLightboxTitle').textContent = title;
+    document.getElementById('imgLightboxMeta').textContent = meta;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeImgLightbox(e) {
+    if (e && e.target !== document.getElementById('imgLightbox') && !e.target.classList.contains('img-lightbox-close')) return;
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.getElementById('imgLightboxImg').src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeImgLightbox();
+      closeLightbox();
+    }
+  });
+
+  // ── FILTRE CATEGORIES ──
+  function filterCat(cat, btn) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const map = {
+      oniric: 'block-oniric',
+      injection: 'block-injection',
+      miscelani: 'block-miscelani',
+      ccap: 'block-ccap'
+    };
+    if (cat === 'all') {
+      document.querySelectorAll('.category-block').forEach(b => {
+        b.classList.add('visible');
+        b.style.animation = 'fadeUp 0.4s ease both';
+      });
+    } else {
+      document.querySelectorAll('.category-block').forEach(b => b.classList.remove('visible'));
+      const target = document.getElementById(map[cat]);
+      if (target) {
+        target.classList.add('visible');
+        target.style.animation = 'fadeUp 0.4s ease both';
+      }
+    }
+  }
+
+  // ── LIGHTBOX YOUTUBE ──
+  // Crida aquesta funció des de qualsevol targeta de vídeo:
+  // openVideo('ID_DEL_VIDEO_YOUTUBE')
+  // L'ID és la part després de ?v= a la URL de YouTube
+  // Exemple: https://www.youtube.com/watch?v=dQw4w9WgXcQ → ID = dQw4w9WgXcQ
+  function openVideo(youtubeId) {
+    const lb = document.getElementById('lightbox');
+    const iframe = document.getElementById('lightbox-iframe');
+    iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // ── LIGHTBOX VÍDEO LOCAL ──
+  function openLocalVideo(src) {
+    const lb = document.getElementById('lightbox');
+    const iframe = document.getElementById('lightbox-iframe');
+    // Substituïm l'iframe per un element video per a fitxers locals
+    const existing = document.getElementById('lightbox-video');
+    if (existing) existing.remove();
+    iframe.style.display = 'none';
+    const video = document.createElement('video');
+    video.id = 'lightbox-video';
+    video.src = src;
+    video.controls = true;
+    video.autoplay = true;
+    video.style.cssText = 'width:100%;height:100%;background:#000;';
+    iframe.parentNode.appendChild(video);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightbox-iframe').src = '';
+    document.getElementById('lightbox-iframe').style.display = '';
+    const lv = document.getElementById('lightbox-video');
+    if (lv) lv.remove();
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+
+</script>
+
+</body>
+</html>
